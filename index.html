@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTB — Silence From The Block</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#">
+      <img src="mtb-logo.jpeg" alt="MTB Logo">
+    </a>
+    <nav>
+      <a href="#">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#news">NEWS</a>
+      <a href="#drop">DROP</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <button class="menu" aria-label="Menü">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-logo">
+        <img src="mtb-logo.jpeg" alt="MTB">
+      </div>
+      <p class="eyebrow">MTB COMPANY</p>
+      <h1>SILENCE<br><span>FROM THE BLOCK</span></h1>
+      <p class="intro">BUILT FROM THE STREETS.<br>MADE FOR THE NEXT MOVE.</p>
+      <a class="cta" href="#about">DISCOVER <span>↗</span></a>
+    </section>
+
+    <section id="about" class="section">
+      <p class="section-label">01 / ABOUT</p>
+      <h2>NO NOISE.<br><span>JUST MTB.</span></h2>
+    </section>
+
+    <section id="news" class="section news">
+      <p class="section-label">03 / MTB NEWS</p>
+      <h2>THE LATEST<br><span>FROM MTB.</span></h2>
+      <div class="news-card">
+        <span class="news-tag">MTB UPDATE / 001</span>
+        <h3>THE FIRST DROP IS ON THE WAY.</h3>
+        <p>Neue Updates zur ersten MTB COMPANY Kollektion findest du hier.</p>
+        <span class="news-status">STATUS: IN PROGRESS</span>
+      </div>
+    </section>
+
+    <section id="drop" class="section drop">
+      <p class="section-label">04 / THE FIRST DROP</p>
+      <div class="drop-panel">
+        <p class="drop-kicker">MTB COMPANY PRESENTS</p>
+        <h2>COMING<br><span>SOON.</span></h2>
+        <p class="drop-copy">DROP 001 — FIRST COLLECTION</p>
+        <div class="countdown" aria-live="polite">
+          <div><strong id="days">--</strong><span>DAYS</span></div>
+          <div><strong id="hours">--</strong><span>HOURS</span></div>
+          <div><strong id="minutes">--</strong><span>MIN</span></div>
+          <div><strong id="seconds">--</strong><span>SEC</span></div>
+        </div>
+        <p id="countdown-note" class="countdown-note">DROP DATE: TO BE ANNOUNCED</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <p class="section-label">02 / CONTACT</p>
+      <h2>STAY<br><span>CONNECTED.</span></h2>
+      <p>More coming soon.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/mtb.offizell/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+        <a href="https://www.tiktok.com/@mtb.cp" target="_blank" rel="noopener">TIKTOK ↗</a>
+        <a href="https://snapchat.com/t/pIidgX5y" target="_blank" rel="noopener">SNAPCHAT ↗</a>
+      </div>
+    </section>
+
+    <section id="newsletter" class="newsletter">
+      <p class="section-label">05 / STAY IN THE LOOP</p>
+      <h2>GET THE<br><span>MTB NEWS.</span></h2>
+      <p class="newsletter-copy">Newsletter — Anmeldung kommt bald.</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" aria-label="Deine E-Mail-Adresse" placeholder="DEINE E-MAIL-ADRESSE" required>
+        <button type="submit">NOTIFY ME ↗</button>
+      </form>
+      <p id="newsletter-message" class="newsletter-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 MTB COMPANY</span>
+    <span>SILENCE FROM THE BLOCK 🌐</span>
+  </footer>
+
+  <button id="back-to-top" aria-label="Zurück nach oben">↑</button>
+
+  <div id="mtb-loader" aria-label="MTB lädt">
+    <img src="mtb-logo.jpeg" alt="MTB">
+    <span>MTB COMPANY</span>
+  </div>
+
+  <script>
+    // Countdown: Sobald das Drop-Datum feststeht, hier eintragen (lokale Zeit).
+    const DROP_DATE = null; // Beispiel: "2026-12-01T18:00:00"
+    const countdownNote = document.getElementById("countdown-note");
+    if (DROP_DATE) {
+      const target = new Date(DROP_DATE).getTime();
+      countdownNote.textContent = "COUNTDOWN TO DROP 001";
+      function updateCountdown() {
+        const diff = Math.max(0, target - Date.now());
+        document.getElementById("days").textContent = String(Math.floor(diff / 86400000)).padStart(2,"0");
+        document.getElementById("hours").textContent = String(Math.floor(diff / 3600000) % 24).padStart(2,"0");
+        document.getElementById("minutes").textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
+        document.getElementById("seconds").textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
+      }
+      updateCountdown(); setInterval(updateCountdown, 1000);
+    }
+    document.getElementById("back-to-top").addEventListener("click", () => window.scrollTo({top:0,behavior:"smooth"}));
+    window.addEventListener("scroll", () => {
+      document.getElementById("back-to-top").classList.toggle("visible", window.scrollY > 400);
+    });
+    document.getElementById("newsletter-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      document.getElementById("newsletter-message").textContent =
+        "Danke! Newsletter-Anmeldung wird bald aktiviert.";
+    });
+    window.addEventListener("load", () => {
+      setTimeout(() => document.getElementById("mtb-loader").classList.add("hidden"), 850);
+    });
+  </script>
+</body>
+</html>
